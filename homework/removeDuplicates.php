@@ -1,23 +1,12 @@
-<?php
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-class Solution {
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-    /**
-     * @param Integer[] $nums
-     * @return Integer
-     */
-    //删除排序数组中的重复项
-    function removeDuplicates(&$nums) {
-        $i=0;
-        for($j=1;$j<count($nums);$j++){
-            if($nums[$i] != $nums[$j]){
-                $i++;
-                $nums[$i] = $nums[$j];
-            }
-        }
-        return $i+1;
+contract YozoToken is ERC20, Ownable {
+    constructor() ERC20("Wrapped Yozo", "YOZO") Ownable(msg.sender) {
+        uint256 initialSupply = 21000000 * 10 ** decimals();
+        _mint(msg.sender, initialSupply);
     }
 }
-    
-    
-    
